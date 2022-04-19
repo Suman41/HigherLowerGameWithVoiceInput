@@ -26,15 +26,16 @@ class SpeechToText():
         self.chance = 10
 
     def SpeakText(self, command):
-        engine = pyttsx3.init()
-        voices = engine.getProperty('voices')
-        engine.setProperty('voice', voices[1].id)
-        engine.setProperty('rate', 174)
-        engine.say(command)
-        engine.runAndWait()
-        engine.stop()
-        # except:
-        #     print("Speech Engine access error")
+        try:
+            engine = pyttsx3.init()
+            voices = engine.getProperty('voices')
+            engine.setProperty('voice', voices[1].id)
+            engine.setProperty('rate', 174)
+            engine.say(command)
+            engine.runAndWait()
+            engine.stop()
+        except:
+            print("Speech Engine access error")
 
     def get_input(self):
         while True:
