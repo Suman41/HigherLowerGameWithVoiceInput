@@ -6,6 +6,7 @@ import pyttsx3
 class SpeechToText():
     def __init__(self):
         self.r = sr.Recognizer()
+        # creating dictionary to increase the accuracy of voice input result
         self.dictionary = {
             'three 3': ['tree', 'free', 'shri', 'treat'],
             'stop stop': ['top'],
@@ -29,6 +30,7 @@ class SpeechToText():
         try:
             engine = pyttsx3.init()
             voices = engine.getProperty('voices')
+            # changes the voice of the speech engine and speech tempo
             engine.setProperty('voice', voices[1].id)
             engine.setProperty('rate', 174)
             engine.say(command)
@@ -41,7 +43,7 @@ class SpeechToText():
         while True:
             try:
                 with sr.Microphone() as source2:
-                    # wait for a second to let recognizer adjust the energy threshold based on the surrounding noise level
+                    # wait for a duration to let recognizer adjust the energy threshold based on the surrounding noise level
                     self.r.adjust_for_ambient_noise(source2, duration=0.05)
                     # listens for the user's input
                     audio2 = self.r.listen(source2)
